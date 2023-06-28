@@ -8,12 +8,20 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.teamseven.dto.entity.Game;
 
+import com.teamseven.model.persistence.*;
 
 @Repository
 public class GameDaoImpl implements GameDao {
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+
+	@Override
+	public List<Game> getAllGames() {
+		String query = "SELECT IS, ANSWER, STATUS from game";
+		return  jdbcTemplate.query(query, new GameRowMapper());
+	}
 
 }

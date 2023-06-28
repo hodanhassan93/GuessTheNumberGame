@@ -12,13 +12,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
+import com.teamseven.dto.entity.Game;
 import com.teamseven.model.service.GameService;
 
 @RestController
 public class GameResource {
 	
 	@Autowired
-	GameService numberToGuessService;
+	GameService gameService;
+
+
+
+    @GetMapping("/game")
+    public ResponseEntity<List<Game>> getAllGames() {
+    List<Game> allGames = gameService.getAllGames();
+    return new ResponseEntity<>(allGames, HttpStatus.OK);
+     
+    
+    }
 
 }
