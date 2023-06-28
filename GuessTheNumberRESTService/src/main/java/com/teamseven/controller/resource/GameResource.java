@@ -25,7 +25,7 @@ public class GameResource {
 
 
 
-    @GetMapping("/game")
+    @GetMapping(path="/games", produces = MediaType.APPLICATION_JSON_VALUE )
     public ResponseEntity<List<Game>> getAllGames() {
     List<Game> allGames = gameService.getAllGames();
     return new ResponseEntity<>(allGames, HttpStatus.OK);

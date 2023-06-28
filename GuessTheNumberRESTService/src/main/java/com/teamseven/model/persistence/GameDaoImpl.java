@@ -20,7 +20,7 @@ public class GameDaoImpl implements GameDao {
 
 	@Override
 	public List<Game> getAllGames() {
-		String query = "SELECT IS, ANSWER, STATUS from game";
+		String query = "SELECT GAME_ID, GAMEANSWER, GAMESTATUS from game";
 		return  jdbcTemplate.query(query, new GameRowMapper());
 	}
 
