@@ -4,6 +4,6 @@ import java.util.List;
 
 import com.teamseven.dto.entity.NumberToGuess;
 
-public interface NumberToGuessService {
+public interface GameService {
 
 }

@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.teamseven.dto.entity.NumberToGuess;
 import com.teamseven.dto.entity.NumberToGuessList;
-import com.teamseven.model.service.NumberToGuessService;
+import com.teamseven.model.service.GameService;
 
 @RestController
-public class NumberToGuessResource {
+public class GameResource {
 	
 	@Autowired
-	NumberToGuessService numberToGuessService;
+	GameService numberToGuessService;
 
 }
