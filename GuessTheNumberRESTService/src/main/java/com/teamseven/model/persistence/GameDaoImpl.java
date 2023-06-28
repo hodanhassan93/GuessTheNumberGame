@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.teamseven.dto.entity.NumberToGuess;
 
 @Repository
-public class NumberToGuessDaoImpl implements NumberToGuessDao {
+public class GameDaoImpl implements GameDao {
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;

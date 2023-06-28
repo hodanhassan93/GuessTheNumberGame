@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.teamseven.dto.entity.NumberToGuess;
-import com.teamseven.model.persistence.NumberToGuessDao;
+import com.teamseven.model.persistence.GameDao;
 
 @Service
-public class NumberToGuessServiceImpl implements NumberToGuessService {
+public class GameServiceImpl implements GameService {
 	
 	@Autowired
-	private NumberToGuessDao numberToGuessDao;
+	private GameDao numberToGuessDao;
 
 }

@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.teamseven.dto.entity.NumberToGuess;
 
-public class NumberToGuessRowMapper implements RowMapper<NumberToGuess> {
+public class GameRowMapper implements RowMapper<NumberToGuess> {
 
 	@Override
 	public NumberToGuess mapRow(ResultSet resultSet, int rowNum) throws SQLException {
