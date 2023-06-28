@@ -8,7 +8,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.teamseven.dto.entity.NumberToGuess;
+
 
 @Repository
 public class GameDaoImpl implements GameDao {
