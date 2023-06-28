@@ -16,7 +16,7 @@ import lombok.ToString;
 @ToString
 public class Round {
 	
-	private int id;
+	private int roundId;
 	private int gameId;
 	private String guess;
 	private Timestamp timeOfGuess;
