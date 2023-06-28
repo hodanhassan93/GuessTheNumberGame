@@ -21,4 +21,5 @@ public class NumberToGuessRowMapper implements RowMapper<NumberToGuess> {
 		
 		return numberToGuess;
 	}
-	
+
+}
