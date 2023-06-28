@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.teamseven.dto.entity.NumberToGuess;
-import com.teamseven.dto.entity.NumberToGuessList;
 import com.teamseven.model.service.GameService;
 
 @RestController
