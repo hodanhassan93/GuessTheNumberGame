@@ -11,5 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class RoundList {
 
-	List<RoundList> roundList;
+//	List<RoundList> roundList;
+	private List<Round> rounds;
 }

@@ -20,7 +20,11 @@ public class RoundResource {
 	GameService	 gameService;
 	
 	
-  
+    @GetMapping(path = "/rounds/{gameId}", produces = MediaType.APPLICATION_JSON_VALUE )
+    public ResponseEntity<List<Round>> getAllRoundsOrderedByTime(@PathVariable int gameId) {
+        List<Round> allRoundsByGameId = roundService.getAllRoundsOrderedByTime(gameId);
+        return new ResponseEntity<>(allRoundsByGameId, HttpStatus.OK);
+    }
 
 
 }

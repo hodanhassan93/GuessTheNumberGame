@@ -51,4 +51,9 @@ public class RoundServiceImpl implements RoundService{
 
         return "e:" + exactMatches + ",p:" + partialMatches;
     }
+    
+    @Override
+    public List<Round> getAllRoundsOrderedByTime(int gameId) {
+        return roundDao.getAllRoundsOrderedByTime(gameId);
+    }
 }

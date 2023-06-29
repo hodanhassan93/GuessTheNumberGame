@@ -21,4 +21,14 @@ public class RoundDaoImpl implements RoundDao{
 	}
 	
 
+	@Override
+	public List<Round> getAllRoundsOrderedByTime(int gameId) {
+	    String sql_query = "SELECT r.* " +
+	                       "FROM round r " +
+	                       "WHERE r.GAME_ID = ? " +
+	                       "ORDER BY r.Time_of_guess ASC";
+	    return jdbcTemplate.query(sql_query, new Object[]{gameId}, new RoundRowMapper());
+	}
+
+	
 }
