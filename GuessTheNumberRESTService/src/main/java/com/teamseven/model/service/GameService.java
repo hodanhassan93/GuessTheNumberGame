@@ -9,4 +9,5 @@ public interface GameService {
 	
 	List<Game> getAllGames();
 
+
 }
