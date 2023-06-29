@@ -23,5 +23,6 @@ public class GameDaoImpl implements GameDao {
 		String query = "SELECT GAME_ID, GAMEANSWER, GAMESTATUS from game";
 		return  jdbcTemplate.query(query, new GameRowMapper());
 	}
+	
 
 }
