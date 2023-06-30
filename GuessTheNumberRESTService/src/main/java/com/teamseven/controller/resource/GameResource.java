@@ -24,6 +24,12 @@ public class GameResource {
 	GameService gameService;
 
 
+	
+	@PostMapping("/begin")
+    public ResponseEntity<Game> begin() {
+        Game game = gameService.createGame();
+        return new ResponseEntity<>(game, HttpStatus.CREATED);
+    }
 
     @GetMapping(path="/games", produces = MediaType.APPLICATION_JSON_VALUE )
     public ResponseEntity<List<Game>> getAllGames() {
@@ -32,5 +38,19 @@ public class GameResource {
      
     
     }
+    
+    @GetMapping("/game/{id}")
+    public ResponseEntity<Game> getGame(@PathVariable int id) {
+        Game game = gameService.getGame(id);
+        if (game == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        if (!game.isGameStatus()) {
+            game.setGameAnswer(null);
+        }
+        return new ResponseEntity<>(game, HttpStatus.OK);
+    }
+
+    
 
 }

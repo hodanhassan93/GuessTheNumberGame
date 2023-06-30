@@ -1,12 +1,20 @@
 package com.teamseven.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.teamseven.dto.entity.Game;
+import com.teamseven.dto.entity.Guess;
 import com.teamseven.dto.entity.Round;
 import com.teamseven.model.persistence.RoundDao;
 
+@Service
 public class RoundServiceImpl implements RoundService{
+	
+	@Autowired
+	private GameDao gameDao;
 	
 	@Autowired
 	private RoundDao roundDao;
@@ -56,4 +64,51 @@ public class RoundServiceImpl implements RoundService{
     public List<Round> getAllRoundsOrderedByTime(int gameId) {
         return roundDao.getAllRoundsOrderedByTime(gameId);
     }
+    
+	@Override
+	public Round makeGuess(int gameId, Guess guess) {
+	    Game game = gameDao.getGameById(gameId);
+	    String answer = game.getGameAnswer();
+
+	    String result = computeResult(guess, answer);
+	    
+	    if(result.equals("e:4:p:0")){
+	        game.setGameStatus(true);
+	        gameDao.updateGame(game);
+	    }
+
+	    Round round = new Round();
+	    round.setGuess(guess);
+	    round.setTimeOfGuess(LocalDateTime.now());
+	    round.setResult(result);
+	    round.setGameId(gameId);
+
+	    return roundDao.addRound(round);
+	}
+	
+	
+	public String computeResult(Guess guessObj, String answer) {
+	    String guess = guessObj.getGuessValue();
+	    int exactMatches = 0;
+	    int partialMatches = 0;
+
+	    for (int i = 0; i < guess.length(); i++) {
+	        char guessDigit = guess.charAt(i);
+
+	        if (answer.charAt(i) == guessDigit) {
+	            exactMatches++;
+	        } else if (answer.contains(Character.toString(guessDigit))) {
+	            partialMatches++;
+	        }
+	    }
+
+	    return String.format("e:%d:p:%d", exactMatches, partialMatches);
+	}
+
+
+	@Override
+	public List<Round> getRoundsForGame(int gameId) {
+		return roundDao.getAllRoundsOrderedByTime(gameId);
+    }
+
 }

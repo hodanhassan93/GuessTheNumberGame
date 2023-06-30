@@ -8,6 +8,6 @@ import com.teamseven.dto.entity.Game;
 public interface GameService {
 	
 	List<Game> getAllGames();
-
-
+	 Game createGame() ;
+	 public Game getGame(int id);
 }
