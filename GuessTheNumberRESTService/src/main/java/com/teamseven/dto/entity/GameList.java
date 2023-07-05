@@ -12,4 +12,24 @@ import lombok.NoArgsConstructor;
 public class GameList {
 
 	List<GameList> gameList;
+
+	public GameList(List<GameList> gameList) {
+		super();
+		this.gameList = gameList;
+	}
+
+	public GameList() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public List<GameList> getGameList() {
+		return gameList;
+	}
+
+	public void setGameList(List<GameList> gameList) {
+		this.gameList = gameList;
+	}
+	
+	
 }

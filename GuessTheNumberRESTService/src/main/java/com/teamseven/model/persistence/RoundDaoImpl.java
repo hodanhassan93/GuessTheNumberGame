@@ -15,13 +15,6 @@ public class RoundDaoImpl implements RoundDao{
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	
-	@Override
-	public void addRound(Round round) {
-	    String insertRound = "INSERT INTO round (GAME_ID, Guess, Time_of_guess, Result) VALUES (?, ?, ?, ?)";
-	    jdbcTemplate.update(insertRound, round.getGameId(), round.getGuess(), round.getTimeOfGuess(), round.getResult());
-	}
-	
     @Override
 	public Round addRound(Round round) {
 	    String insertRound = "INSERT INTO round (GAME_ID, Guess, Time_of_guess, Result) VALUES (?, ?, ?, ?)";
@@ -29,7 +22,6 @@ public class RoundDaoImpl implements RoundDao{
 		return round;
 	}
 	
-
 	@Override
 	public List<Round> getAllRoundsOrderedByTime(int gameId) {
 	    String sql = "SELECT r.* " +
@@ -38,16 +30,15 @@ public class RoundDaoImpl implements RoundDao{
 	                       "ORDER BY r.Time_of_guess ASC";
 	    return jdbcTemplate.query(sql, new RoundRowMapper(), gameId);
 	}
-	
 
 	@Override
-	public List<Round> getAllRoundsOrderedByTime(int gameId) {
-	    String sql_query = "SELECT r.* " +
-	                       "FROM round r " +
-	                       "WHERE r.GAME_ID = ? " +
-	                       "ORDER BY r.Time_of_guess ASC";
-	    return jdbcTemplate.query(sql_query, new Object[]{gameId}, new RoundRowMapper());
+	public int addRoundBool(Round round) {
+		try {
+			return jdbcTemplate.update("INSERT INTO ROUND VALUES(?,?,?,?,?)", round.getRoundId(),round.getGameId(), round.getGuess(),
+					round.getTimeOfGuess(), round.getResult());
+		} catch (Exception ex) {
+			return 0;
+		}
 	}
 
-	
 }

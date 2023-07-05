@@ -15,5 +15,6 @@ public class Guess {
         this.guessValue = guessValue;
     }
 
+
 	
 }

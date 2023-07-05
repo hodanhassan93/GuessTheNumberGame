@@ -43,15 +43,12 @@ public class GameDaoImpl implements GameDao {
         return game;
     
 	}
-	
+
 	@Override
 	public Game getGameById(int id) {
 	    final String sql = "SELECT * FROM game WHERE game_id = ?";
 	    return jdbcTemplate.queryForObject(sql, new GameRowMapper(), id);
 	}
-
-
-	
 
 	@Override
 	public Game getGame(Integer id) {
@@ -69,6 +66,24 @@ public class GameDaoImpl implements GameDao {
 
         jdbcTemplate.update(sql, game.getGameAnswer(), game.isGameStatus(), game.getGameId());
     }
+
+	@Override
+	public Game getOneGame(int gamedId) {
+		try {
+			return jdbcTemplate.queryForObject("SELECT * FROM GAME WHERE GAME_ID=?", new GameRowMapper(),gamedId);
+		}catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
+	@Override
+	public int updateGame(int gameId,boolean status) {
+		try {
+			return jdbcTemplate.update("UPDATE GAME SET GAMESTATUS=? WHERE GAME_ID=?", status, gameId);
+		} catch (Exception ex) {
+			return 0;
+		}
+	}
 	
 	
 }

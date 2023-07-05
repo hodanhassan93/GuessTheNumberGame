@@ -6,7 +6,7 @@ DROP table if exists game, round;
 
 CREATE TABLE game (
     GAME_ID INT AUTO_INCREMENT PRIMARY KEY,
-    GameAnswer VARCHAR(4) NOT NULL,
+    GameAnswer VARCHAR(20),
     GameStatus BOOLEAN NOT NULL
 );
 

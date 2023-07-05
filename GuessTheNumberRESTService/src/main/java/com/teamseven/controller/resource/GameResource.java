@@ -15,16 +15,19 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 import com.teamseven.dto.entity.Game;
+import com.teamseven.dto.entity.Round;
 import com.teamseven.model.service.GameService;
+import com.teamseven.model.service.RoundService;
 
 @RestController
 public class GameResource {
 	
 	@Autowired
 	GameService gameService;
-
-
 	
+	@Autowired
+	RoundService roundService;
+
 	@PostMapping("/begin")
     public ResponseEntity<Game> begin() {
         Game game = gameService.createGame();
@@ -35,8 +38,6 @@ public class GameResource {
     public ResponseEntity<List<Game>> getAllGames() {
     List<Game> allGames = gameService.getAllGames();
     return new ResponseEntity<>(allGames, HttpStatus.OK);
-     
-    
     }
     
     @GetMapping("/game/{id}")
@@ -46,7 +47,7 @@ public class GameResource {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         if (!game.isGameStatus()) {
-            game.setGameAnswer(null);
+        	 game.getGameAnswer();
         }
         return new ResponseEntity<>(game, HttpStatus.OK);
     }
