@@ -34,30 +34,30 @@ public class GameServiceImpl implements GameService {
 	    return games;
 	}
 
-	@Override
-	public Game createGame() {
-	    Game game = new Game();
-//	    game.getGameAnswer();
-	    game.setGameStatus(false);
-	    return gameDao.addGame(game);
-	}
-
-//	These methods have moved inside com.teamseven.dto.entity.Game
 //	@Override
-//    public Game createGame() {
-//        Game game = new Game();
-//        game.setGameAnswer(generateUniqueFourDigitNumber());
-//        game.setGameStatus(false);
-//        return gameDao.addGame(game);
-//    }
+//	public Game createGame() {
+//	    Game game = new Game();
+////	    game.getGameAnswer();
+//	    game.setGameStatus(false);
+//	    return gameDao.addGame(game);
+//	}
 
-//    private String generateUniqueFourDigitNumber() {
-//        List<Integer> numbers = new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9));
-//        Collections.shuffle(numbers);
-//        return numbers.subList(0, 4).stream()
-//                .map(String::valueOf)
-//                .collect(Collectors.joining());
-//    }
+
+	@Override
+    public Game createGame() {
+        Game game = new Game();
+        game.setGameAnswer(generateUniqueFourDigitNumber());
+        game.setGameStatus(false);
+        return gameDao.addGame(game);
+    }
+
+    private String generateUniqueFourDigitNumber() {
+        List<Integer> numbers = new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9));
+        Collections.shuffle(numbers);
+        return numbers.subList(0, 4).stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining());
+    }
     
     @Override
     public Game getGame(int id) {
